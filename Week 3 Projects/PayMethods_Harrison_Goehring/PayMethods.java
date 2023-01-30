@@ -13,7 +13,7 @@ public class PayMethods {
      
 	 // our main method, will call all the methods of the PayMethods class
 	 // to calculate our employee's gross pay.
-	 public static void main(String []args){      
+	 public static void main(String[] args){      
     	 
     	System.out.println("Welcome to the Payment Calculator!"); // welcome message to the user.
         

@@ -41,8 +41,8 @@ public class TestRectangle {
 // Our Rectangle Class is defined with a default doubles width and height, set to a default value of 1
 class Rectangle {
 		
-	double width = 1;
-	double height = 1;
+	public double width = 1;
+	public double height = 1;
 		
 	// Our default, no-arg constructor for our rectangle, invoking this constructor will create a rectangle object with the default 
 	// width of 1 and height of 1.
@@ -54,8 +54,8 @@ class Rectangle {
 	// new rectangle object
 	Rectangle(double newWidth, double newHeight) {
 			
-		width = newWidth; // The rectangle's width is equivalent to the newWidth argument passed into the method
-		height = newHeight; // The rectangle's height is equivalent to the newHeight argument passed into the method
+		this.width = newWidth; // The rectangle's width is equivalent to the newWidth argument passed into the method
+		this.height = newHeight; // The rectangle's height is equivalent to the newHeight argument passed into the method
 			
 	}
 	

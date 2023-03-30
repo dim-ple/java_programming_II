@@ -3,24 +3,26 @@
 
 // This program uses the JavaFX library to create a Smiley Face in an application window.
 
-import javafx.collections.ObservableList;
+// Import our JavaFX tools to display our application
 import javafx.application.Application;
 import javafx.scene.Scene; 
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+//Imported our shapes needed to create the Smiley Face
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Polygon;
-import javafx.stage.Stage; 
-
 
 public class SmileyFaceApp extends Application {
+	@Override
+	
 	public void start(Stage primaryStage) {
 		Pane pane = new Pane();
 		
-				
 		Circle face = new Circle();
 		face.setRadius(100);
 		face.setStroke(Color.BLACK);
@@ -32,8 +34,7 @@ public class SmileyFaceApp extends Application {
 	    smile.setFill(Color.WHITE);
 	    smile.setType(ArcType.OPEN);
 	    smile.setStroke(Color.BLACK);
-	    
-	    
+	   
 	    Ellipse leftSocket = new Ellipse();
 	    leftSocket.setRadiusX(30);
 	    leftSocket.setRadiusY(15);
@@ -41,7 +42,6 @@ public class SmileyFaceApp extends Application {
 	    leftSocket.setCenterY(165);
 	    leftSocket.setFill(Color.WHITE);
 	    leftSocket.setStroke(Color.BLACK);
-	    
 	    
 	    Ellipse rightSocket = new Ellipse();
 	    rightSocket.setRadiusX(30);
@@ -65,25 +65,12 @@ public class SmileyFaceApp extends Application {
 		rightEye.setCenterX(240);
 	    rightEye.setCenterY(165);
 		
-		
-	    
 	    Polygon nose = new Polygon();
 	    nose.setFill(Color.WHITE);
 	    nose.setStroke(Color.BLACK);
-	    ObservableList<Double> list = nose.getPoints();
+	    nose.getPoints().addAll(220.0, 180.0, 180.0, 200.0, 220.0, 220.0);
+	    nose.setRotate(90);
 	    
-	    //double centerX = getWidth() / 2, centerY = getHeight() / 2;
-	    //double radius = Math.min(getWidth(), getHeight()) * 0.4;
-
-	    // Add points to the polygon list
-	    /*for (int i = 0; i < 3; i++) {
-	      list.add(centerX + radius * Math.cos(2 * i * Math.PI / 3)); 
-	      list.add(centerY - radius * Math.sin(2 * i * Math.PI / 3));
-	    }*/
-	    
-	 
-	    
-	   
 	    pane.getChildren().add(face);
 	    pane.getChildren().add(smile);
 	    pane.getChildren().add(leftSocket);
@@ -91,7 +78,6 @@ public class SmileyFaceApp extends Application {
 	    pane.getChildren().add(leftEye);
 	    pane.getChildren().add(rightEye);
 	    pane.getChildren().add(nose);
-	    
 	    
 	    Scene scene = new Scene(pane, 400, 400);
 	    
@@ -103,7 +89,6 @@ public class SmileyFaceApp extends Application {
 	public static void main(String[] args) {
 		
 		launch(args);
-
+		
 	}
-
 }

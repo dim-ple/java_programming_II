@@ -27,7 +27,7 @@ public class HangmanGameTest extends Application {
 		String[] array = {"Array","Java", "Extreme", "Easy", "Restart", "Boolean"};
 		
 		// Creates a character array that will hold all the letters of the chosen word
-		char[] letterArray = {};
+		
 		
 		// Creates an ArrayList with the contents of our array. This ArrayList contains 
 		// String answers to out hangman game.
@@ -35,13 +35,15 @@ public class HangmanGameTest extends Application {
 		
 		// Shuffles the elements in our ArrayList
 		java.util.Collections.shuffle(words);
-		(int)Math.floor(Math.random() * (highExtreme - lowExtreme + 1) + lowExtreme)
+		int randIndex = (int)Math.floor(Math.random() * (6 - 0 + 1));
+		String answer = words.get(randIndex);
+		
+		char[] letterArray = answer.toCharArray();
 		
 		
 		Pane pane = new Pane();
 		
-		
-		
+
 		// This block of code defines our hangman stand
 		Line headConnection = new Line(275.0, 70.0, 275.00, 35.0);
 	    Line horizontalConnection = new Line(275.0, 35.0, 125.0, 35.0);

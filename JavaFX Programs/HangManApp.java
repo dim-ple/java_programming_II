@@ -1,7 +1,7 @@
 // Program created by: Harrison Goehring
 // Date Created: April 1st, 2023
 
-// This program uses the JavaFX library to create a Smiley Face in an application window.
+// This program uses the JavaFX library to create a Hangman Drawing in an application window.
 
 import javafx.application.Application;
 import javafx.scene.Scene; 

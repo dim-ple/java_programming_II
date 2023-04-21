@@ -248,15 +248,21 @@ public class HangmanGameTest extends Application {
 
 		private void drawLeftArm() {
 	
-			leftArm = new Line(255.0, 122.0, 180.0, 185.0);
+			leftArm.setStartX(255.0);
+			leftArm.setStartY(122.0);
+			leftArm.setEndX(180.0);
+			leftArm.setEndY(185.0);
 			leftArm.setStroke(Color.BLACK);
-
 			pane.getChildren().add(leftArm);
+			
 		}
 
 		private void drawRightLeg() {
 	
-			rightLeg = new Line(275.0, 220.0, 325.0, 275.0);
+			rightLeg.setStartX(275.0);
+			rightLeg.setStartY(220.0);
+			rightLeg.setEndX(325.0);
+			rightLeg.setEndY(275.0);
 			rightLeg.setStroke(Color.BLACK);
 
 			pane.getChildren().add(rightLeg);
@@ -264,14 +270,45 @@ public class HangmanGameTest extends Application {
 
 		private void drawLeftLeg() {
 	
-			leftLeg = new Line(275.0, 220.0, 225.0, 275.0);
+			leftLeg.setStartX(275.0);
+			leftLeg.setStartY(220.0);
+			leftLeg.setEndX(225.0);
+			leftLeg.setEndY(275.0);
 			leftLeg.setStroke(Color.BLACK);
 
 			pane.getChildren().add(leftLeg);
 		}
 		
 		private void hangmanSwing() {
-			PathTransition pt = new PathTransition(Duration.millis(4000), new Arc(0.0, 0.0, 20.0, 10.0, 40.0, 40.0)) ;
+			
+			
+			PathTransition ptFace = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), face);
+			ptFace.setCycleCount(Transition.INDEFINITE);
+			ptFace.setAutoReverse(true);
+			ptFace.play();
+			
+			PathTransition ptBody = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), body);
+			ptBody.setCycleCount(Transition.INDEFINITE);
+			ptBody.setAutoReverse(true);
+			ptBody.play();
+			
+			PathTransition ptRightArm = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), rightArm);
+			ptRightArm.setCycleCount(Transition.INDEFINITE);
+			ptRightArm.setAutoReverse(true);
+			ptRightArm.play();
+			
+			PathTransition ptLeftArm = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), leftArm);
+			ptLeftArm.setCycleCount(Transition.INDEFINITE);
+			ptLeftArm.setAutoReverse(true);
+			ptLeftArm.play();
+			
+			PathTransition ptLeftLeg = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), leftLeg);
+			ptLeftLeg.setCycleCount(Transition.INDEFINITE);
+			ptLeftLeg.setAutoReverse(true);
+			ptLeftLeg.play();
+			
+			
+		
 		}
 		
 		

@@ -49,6 +49,13 @@ public class HangmanGameTest extends Application {
 		Label lblAnswer = new Label();
 		Label lblMisses = new Label();
 		Label lblIntroMsg = new Label();
+		
+		Circle face = new Circle();
+		Line body = new Line();
+		Line leftArm = new Line();
+		Line rightArm = new Line();
+		Line leftLeg = new Line();
+		Line rightLeg = new Line();
 			
 		Pane pane = new Pane();
 		
@@ -56,6 +63,9 @@ public class HangmanGameTest extends Application {
 		@Override
 		public void start(Stage primaryStage) {
 
+			
+			
+			
 			
 			// This block of code defines our hangman stand
 			Line headConnection = new Line(275.0, 70.0, 275.00, 35.0);
@@ -81,7 +91,6 @@ public class HangmanGameTest extends Application {
 		    		startGame();
 		    	} else if (e.getCode().isLetterKey()) {
 		    		guess(e.getCode().getName().charAt(0));
-		    		drawHangman(incorrectLetters.size());
 		    	}
 		    });
 
@@ -118,19 +127,11 @@ public class HangmanGameTest extends Application {
 		    lblIntroMsg.setLayoutY(390);
 		    
 		    pane.getChildren().addAll(lblAnswer, lblMisses, lblIntroMsg);
-		    
-		    
   
 		}
 		
 		private boolean guess(char letter) {
-			
-			Circle face = new Circle();
-			face.setRadius(30);
-			face.setStroke(Color.BLACK);
-			face.setFill(Color.WHITE);
-			face.setCenterX(275);
-		    face.setCenterY(100);
+		
 			
 			letter = Character.toLowerCase(letter);
 			
@@ -148,11 +149,15 @@ public class HangmanGameTest extends Application {
 			String setAnswer = fillAnswer();
 			
 			if (setAnswer.equalsIgnoreCase(lblAnswer.getText())) {
+				
+				incorrectLetters.add(letter);
+				
 				if(incorrectLetters.size() == GAME_OVER) {
 					lblIntroMsg.setText("Game Over - Press Enter to Try Again.");
 					isPlaying = false;
 				} else {
 					lblIntroMsg.setText(letter + " was an incorrect guess. Guess Again!");
+					drawHangman(incorrectLetters.size());
 				}
 				
 				lblMisses.setText(lblMisses.getText() + letter);
@@ -209,19 +214,21 @@ public class HangmanGameTest extends Application {
 		
 		private void drawFace() {
 			
-			Circle face = new Circle();
 			face.setRadius(30);
 			face.setStroke(Color.BLACK);
 			face.setFill(Color.WHITE);
 			face.setCenterX(275);
 		    face.setCenterY(100);
-		    
-		    pane.getChildren().add(face);
+			
+			pane.getChildren().add(face);
 		}
 		
 		private void drawBody() {
 			
-			Line body = new Line(275.0, 130.0, 275.0, 220.0);
+			body.setStartX(275.0);
+			body.setStartY(130.0);
+			body.setEndX(275.0);
+			body.setEndY(220.0);
 			body.setStroke(Color.BLACK);
 		
 			pane.getChildren().add(body);
@@ -229,7 +236,11 @@ public class HangmanGameTest extends Application {
 		
 		private void drawRightArm() {
 			
-			Line rightArm = new Line(295.0, 122.0, 360.0, 185.0);
+			
+			rightArm.setStartX(295.0);
+			rightArm.setStartY(122.0);
+			rightArm.setEndX(360.0);
+			rightArm.setEndY(185.0);
 			rightArm.setStroke(Color.BLACK);
 		
 			pane.getChildren().add(rightArm);
@@ -237,7 +248,7 @@ public class HangmanGameTest extends Application {
 
 		private void drawLeftArm() {
 	
-			Line leftArm = new Line(255.0, 122.0, 180.0, 185.0);
+			leftArm = new Line(255.0, 122.0, 180.0, 185.0);
 			leftArm.setStroke(Color.BLACK);
 
 			pane.getChildren().add(leftArm);
@@ -245,7 +256,7 @@ public class HangmanGameTest extends Application {
 
 		private void drawRightLeg() {
 	
-			Line rightLeg = new Line(275.0, 220.0, 325.0, 275.0);
+			rightLeg = new Line(275.0, 220.0, 325.0, 275.0);
 			rightLeg.setStroke(Color.BLACK);
 
 			pane.getChildren().add(rightLeg);
@@ -253,14 +264,14 @@ public class HangmanGameTest extends Application {
 
 		private void drawLeftLeg() {
 	
-			Line leftLeg = new Line(275.0, 220.0, 225.0, 275.0);
+			leftLeg = new Line(275.0, 220.0, 225.0, 275.0);
 			leftLeg.setStroke(Color.BLACK);
 
 			pane.getChildren().add(leftLeg);
 		}
 		
 		private void hangmanSwing() {
-			
+			PathTransition pt = new PathTransition(Duration.millis(4000), new Arc(0.0, 0.0, 20.0, 10.0, 40.0, 40.0)) ;
 		}
 		
 		

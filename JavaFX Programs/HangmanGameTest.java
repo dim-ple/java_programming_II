@@ -57,15 +57,6 @@ public class HangmanGameTest extends Application {
 		public void start(Stage primaryStage) {
 
 			
-			Circle face = new Circle();
-			face.setRadius(30);
-			face.setStroke(Color.WHITE);
-			face.setFill(Color.WHITE);
-			face.setCenterX(275);
-		    face.setCenterY(100);
-			
-			
-			
 			// This block of code defines our hangman stand
 			Line headConnection = new Line(275.0, 70.0, 275.00, 35.0);
 		    Line horizontalConnection = new Line(275.0, 35.0, 125.0, 35.0);
@@ -90,6 +81,7 @@ public class HangmanGameTest extends Application {
 		    		startGame();
 		    	} else if (e.getCode().isLetterKey()) {
 		    		guess(e.getCode().getName().charAt(0));
+		    		drawHangman(incorrectLetters.size());
 		    	}
 		    });
 
@@ -165,16 +157,6 @@ public class HangmanGameTest extends Application {
 				
 				lblMisses.setText(lblMisses.getText() + letter);
 				
-				switch (incorrectLetters.size()) {
-					case 1: face.setStroke(Color.BLACK); break;
-					case 2: drawBody(); break;
-					case 3: drawRightArm(); break;
-					case 4: drawLeftArm(); break;
-					case 5: drawRightLeg(); break;
-					case 6: drawLeftLeg(); break;
-					case 7: hangmanSwing(); break; 
-				}
-				
 				return false;
 			} else {
 				lblAnswer.setText(setAnswer);
@@ -209,6 +191,32 @@ public class HangmanGameTest extends Application {
 				}
 			}
 			return hiddenAnswer;
+		}
+		
+		private void drawHangman(int guesses) {
+			
+			switch (guesses) {
+				case 1: drawFace(); break;
+				case 2: drawBody(); break;
+				case 3: drawRightArm(); break;
+				case 4: drawLeftArm(); break;
+				case 5: drawRightLeg(); break;
+				case 6: drawLeftLeg(); break;
+				case 7: hangmanSwing(); break; 
+			}
+		
+		}
+		
+		private void drawFace() {
+			
+			Circle face = new Circle();
+			face.setRadius(30);
+			face.setStroke(Color.BLACK);
+			face.setFill(Color.WHITE);
+			face.setCenterX(275);
+		    face.setCenterY(100);
+		    
+		    pane.getChildren().add(face);
 		}
 		
 		private void drawBody() {

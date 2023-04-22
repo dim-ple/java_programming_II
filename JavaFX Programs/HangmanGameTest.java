@@ -1,12 +1,15 @@
 // Program created by: Harrison Goehring
-// Date Created: April 19th, 2023
+// Date Created: April 21st, 2023
 
 // This program runs a Hangman type game where the user will be able to guess a word, one letter at a time. If the user does not guess a letter in the word correctly,
 // they lose the game. If the user guesses the correct letters to spell the word, they can move on to guess another word. After the user correctly guesses 4 words, they win!
 
+
+// Imports utility's to create ArrayLists, and an ArrayList from an Array to hold our words, guessed letters and incorrectly guessed letters
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Imports our JavaFX tools to create and animate our Hangman scene and text labels
 import javafx.application.Application;
 import javafx.scene.Scene; 
 import javafx.scene.layout.Pane;
@@ -24,6 +27,7 @@ import javafx.animation.PathTransition;
 import javafx.animation.Transition;
 import javafx.util.Duration;
 
+// Imports our JavaFx tool that will take in and 
 import javafx.scene.input.KeyCode;
 
 
@@ -105,8 +109,19 @@ public class HangmanGameTest extends Application {
 		
 		private void startGame() {
 			
+			pane.getChildren().clear();
 			guessedLetters.clear();
 			incorrectLetters.clear();
+			
+			
+			Line headConnection = new Line(275.0, 70.0, 275.00, 35.0);
+		    Line horizontalConnection = new Line(275.0, 35.0, 125.0, 35.0);
+		    Line hangPost = new Line(125.0, 35.0, 125.0, 335.0);
+		    Arc hangStand = new Arc(125.0, 435.0, 75.0, 100.0, 63.0, 55.0);
+		    hangStand.setType(ArcType.OPEN);
+		    hangStand.setFill(Color.TRANSPARENT);
+		    hangStand.setStroke(Color.BLACK);
+		    pane.getChildren().addAll(headConnection, horizontalConnection, hangPost, hangStand, lblIntroMsg);
 			
 			pane.getChildren().remove(lblIntroMsg);
 			
@@ -168,6 +183,7 @@ public class HangmanGameTest extends Application {
 				String correctMsg = "That's right!";
 				if (setAnswer.equalsIgnoreCase(word)) {
 					correctMsg += " You won! Press Enter to play again.";
+					isPlaying = false;
 				}
 				
 				lblIntroMsg.setText(correctMsg);
@@ -282,22 +298,21 @@ public class HangmanGameTest extends Application {
 		private void hangmanSwing() {
 			
 			
-			PathTransition ptFace = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), face);
-			ptFace.setCycleCount(Transition.INDEFINITE);
-			ptFace.setAutoReverse(true);
-			ptFace.play();
 			
 			PathTransition ptBody = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), body);
 			ptBody.setCycleCount(Transition.INDEFINITE);
 			ptBody.setAutoReverse(true);
+			ptBody.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 			ptBody.play();
 			
 			PathTransition ptRightArm = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), rightArm);
 			ptRightArm.setCycleCount(Transition.INDEFINITE);
 			ptRightArm.setAutoReverse(true);
+			ptRightArm.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 			ptRightArm.play();
 			
 			PathTransition ptLeftArm = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), leftArm);
+			ptLeftArm.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 			ptLeftArm.setCycleCount(Transition.INDEFINITE);
 			ptLeftArm.setAutoReverse(true);
 			ptLeftArm.play();
@@ -305,6 +320,13 @@ public class HangmanGameTest extends Application {
 			PathTransition ptLeftLeg = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), leftLeg);
 			ptLeftLeg.setCycleCount(Transition.INDEFINITE);
 			ptLeftLeg.setAutoReverse(true);
+			ptLeftLeg.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+			ptLeftLeg.play();
+			
+			PathTransition ptRightLeg = new PathTransition(Duration.millis(4000), new Arc(300.0, 150.0, 20.0, 10.0, 40.0, 40.0), leftLeg);
+			ptRightLeg.setCycleCount(Transition.INDEFINITE);
+			ptRightLeg.setAutoReverse(true);
+			ptLeftLeg.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 			ptLeftLeg.play();
 			
 			
